@@ -1,0 +1,43 @@
+const mongoose=require("mongoose");
+const chatMessageSchema=new mongoose.Schema(
+    {
+        session:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"ChatSession",
+            required:true
+        },
+        sender:{
+            type:String,
+            enum:[
+                "user",
+                "assistant"
+            ],
+            required:true
+        },
+        content:{
+            type:String,
+            required:true
+        },
+        metadata:{
+            confidence:String,
+            faqCategory:String,
+            suggestTicket:Boolean
+        },
+
+        ui:{
+            type:[
+                {
+                    type:mongoose.Schema.Types.Mixed
+                }
+            ],
+            default:[]
+        }
+    },
+    {
+        timestamps:true
+    }
+);
+module.exports=mongoose.model(
+    "ChatMessage",
+    chatMessageSchema
+);

@@ -1,0 +1,55 @@
+const express=require("express");
+const router=express.Router();
+const {
+    getProfile,
+    updateProfile,
+    changePassword,
+    getStaffUsers,
+    getAllUsers,
+    createUser,
+    updateUser
+}=require("../controllers/userController.js");
+const{
+    protect,
+    authorize
+}=require("../middleware/authMiddleware.js");
+router.get(
+    "/profile",
+    protect,
+    getProfile
+);
+router.put(
+    "/profile",
+    protect,
+    updateProfile
+);
+router.put(
+    "/change-password",
+    protect,
+    changePassword
+);
+router.get(
+    "/staff",
+    protect,
+    authorize("admin","staff"),
+    getStaffUsers
+);
+router.get(
+    "/",
+    protect,
+    authorize("admin"),
+    getAllUsers
+);
+router.post(
+    "/",
+    protect,
+    authorize("admin"),
+    createUser
+);
+router.put(
+    "/:id",
+    protect,
+    authorize("admin"),
+    updateUser
+);
+module.exports=router;

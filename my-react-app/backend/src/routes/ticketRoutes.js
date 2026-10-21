@@ -1,0 +1,118 @@
+const express=require("express");
+const router=express.Router();
+const{
+    createTicket,
+    getMyTickets,
+    getTicketById,
+    getAllTickets,
+    assignTicket,
+    getAssignedTickets,
+    updateTicketStatus,
+    updateResolutionNotes,
+    getTicketTimeline,
+    updateTicket,
+    cancelTicket,
+    approveResolvedTicket,
+    rejectResolvedTicket,
+    reassignTicket,
+    adminCancelTicket
+}=require("../controllers/ticketController");
+
+const{
+    protect,
+    authorize
+}=require("../middleware/authMiddleware");
+router.post(
+    "/",
+    protect,
+    authorize("student"),
+    createTicket
+);
+router.get(
+    "/my",
+    protect,
+    authorize("student"),
+    getMyTickets
+);
+router.get(
+    "/assigned",
+    protect,
+    authorize("staff"),
+    getAssignedTickets
+);
+router.put(
+    "/:id/status",
+    protect,
+    authorize("staff","admin"),
+    updateTicketStatus
+);
+router.put(
+    "/:id/approve",
+    protect,
+    authorize("admin"),
+    approveResolvedTicket
+);
+router.put(
+    "/:id/reject",
+    protect,
+    authorize("admin"),
+    rejectResolvedTicket
+);
+router.put(
+    "/:id/resolution",
+    protect,
+    authorize("staff"),
+    updateResolutionNotes
+);
+router.get(
+    "/:id",
+    protect,
+    authorize(
+        "student",
+        "staff",
+        "admin"
+    ),
+    getTicketById
+);
+router.get(
+    "/",
+    protect,
+    authorize("admin"),
+    getAllTickets
+);
+router.put(
+    "/:id/assign",
+    protect,
+    authorize("admin"),
+    assignTicket
+);
+router.put(
+    "/:id/reassign",
+    protect,
+    authorize("staff"),
+    reassignTicket
+);
+router.get(
+    "/:id/timeline",
+    protect,
+    getTicketTimeline
+);
+router.put(
+    "/:id",
+    protect,
+    authorize("student"),
+    updateTicket
+);
+router.put(
+    "/:id/cancel",
+    protect,
+    authorize("student"),
+    cancelTicket
+);
+router.put(
+    "/:id/admin-cancel",
+    protect,
+    authorize("admin"),
+    adminCancelTicket
+);
+module.exports=router;

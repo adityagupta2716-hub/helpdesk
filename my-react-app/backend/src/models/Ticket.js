@@ -1,0 +1,123 @@
+const mongoose=require("mongoose");
+const ticketSchema=new mongoose.Schema({
+    title:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    description:{
+        type:String,
+        required:true
+    },
+    department:{
+        type:String,
+        required:true
+    },
+    category:{
+        type:String,
+        required:true
+    },
+    priority:{
+        type:String,
+        enum:[
+            "Low",
+            "Medium",
+            "High"
+        ],
+        default:"Medium"
+    },
+    status:{
+        type:String,
+        enum:[
+            "Open",
+            "Assigned",
+            "In Progress",
+            "Resolved",
+            "Pending Review",
+            "Closed",
+            "Canceled"
+        ],
+        default:"Open"
+    },
+    createdBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+    },
+    assignedTo:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        default:null
+    },
+    resolutionNotes:{
+        type:String,
+        dafault:""
+    },
+    cancelation:{
+        canceledBy:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User",
+            default:null
+        },
+        reason:{
+            type:String,
+            default:""
+        },
+        canceledAt:{
+            type:Date,
+            default:null
+        }
+    },
+    adminReview:{
+        reviewedBy:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User",
+            default:null
+        },
+        reviewedAt:Date,
+
+        reviewNotes:{
+            type:String,
+            default:""
+        },
+
+        reviewedAt:{
+            type:Date,
+            default:null
+        },
+
+        decision:{
+            type:String,
+            default:null
+        }
+    },
+    resolvedAt:{
+        type:Date,
+        default:null
+    },
+    attachments:[
+        {
+            type:String
+        }
+    ],
+    lastStatusNote:{
+        type:String,
+        default:""
+    },
+    assignedAt:{
+        type:Date,
+        default:null
+    },
+    closedAt:{
+        type:Date,
+        default:null
+    }
+},
+{
+    timestamps:true
+});
+const Ticket=mongoose.model(
+    "Ticket",
+    ticketSchema
+);
+module.exports=Ticket;

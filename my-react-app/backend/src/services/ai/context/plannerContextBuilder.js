@@ -1,0 +1,27 @@
+function buildPlannerContext({
+    message,
+    history,
+    memory,
+    observations,
+    previousPlans,
+    availableTools,
+    intent=null,
+    conversationState=null,
+    role=null
+})
+{
+    return{
+        message,
+        history,
+        availableTools,
+        previousPlans,
+        memory,
+        observations,
+        intent,
+        conversationState,
+        role
+    };
+}
+module.exports={
+    buildPlannerContext
+};

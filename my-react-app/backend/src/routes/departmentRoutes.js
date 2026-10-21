@@ -1,0 +1,29 @@
+const express=require("express");
+const router=express.Router();
+const{
+    getDepartments,
+    createDepartment,
+    updateDepartment
+}=require("../controllers/departmentController.js");
+const{
+    protect,
+    authorize
+}=require("../middleware/authMiddleware.js");
+router.get(
+    "/",
+    protect,
+    getDepartments
+);
+router.post(
+    "/",
+    protect,
+    authorize("admin"),
+    createDepartment
+);
+router.put(
+    "/:id",
+    protect,
+    authorize("admin"),
+    updateDepartment
+)
+module.exports=router;

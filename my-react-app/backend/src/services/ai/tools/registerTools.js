@@ -1,0 +1,11 @@
+require("./knowledge/searchKnowledgeBase");
+require("./tickets/getMyTickets");
+require("./tickets/getTicketDetails");
+require("./tickets/createTicket");
+require("./analyzeIntent");
+require("./tickets/prepareTicket");
+require("./analytics/getTicketStatistics");
+require("./staff/getStaffTickets");
+require("./admin/getDashboardMetrics");
+require("./admin/getAllTickets");
+require("./admin/getAdminInsights");
