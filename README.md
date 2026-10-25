@@ -106,17 +106,18 @@ cd helpdesk/my-react-app
 ```
 
 ### 2. Setup Backend Server
+In a terminal window:
 ```bash
-cd backend
+cd helpdesk/my-react-app/backend
 npm install
 npm run dev
 ```
 *Backend server runs on `http://localhost:5000` with WebSocket listeners active.*
 
 ### 3. Setup Frontend Application
-In a new terminal:
+In a separate terminal window:
 ```bash
-cd my-react-app
+cd helpdesk/my-react-app
 npm install
 npm run dev
 ```
