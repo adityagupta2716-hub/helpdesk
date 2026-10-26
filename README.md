@@ -125,5 +125,17 @@ npm run dev
 
 ---
 
+## 🌐 Live Application
+
+Once both servers are running, access the application at:
+
+| Service | URL |
+|:---|:---|
+| **Frontend** (Student / Staff / Admin Portals) | [http://localhost:5173](http://localhost:5173) |
+| **Backend REST API** | [http://localhost:5000](http://localhost:5000) |
+| **WebSocket Stream** | `ws://localhost:5000` |
+
+---
+
 ## 📄 License
 This project is open-source under the [MIT License](LICENSE).
