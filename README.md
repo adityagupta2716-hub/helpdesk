@@ -121,7 +121,7 @@ cd helpdesk/my-react-app
 npm install
 npm run dev
 ```
-*Access the application at `http://localhost:5173`.*
+*Access the application at `http://localhost:5176`.*
 
 ---
 
@@ -131,7 +131,7 @@ Once both servers are running, access the application at:
 
 | Service | URL |
 |:---|:---|
-| **Frontend** (Student / Staff / Admin Portals) | [http://localhost:5173](http://localhost:5173) |
+| **Frontend** (Student / Staff / Admin Portals) | [http://localhost:5176](http://localhost:5176) |
 | **Backend REST API** | [http://localhost:5000](http://localhost:5000) |
 | **WebSocket Stream** | `ws://localhost:5000` |
 
